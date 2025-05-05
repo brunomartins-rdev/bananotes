@@ -1,33 +1,86 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Bananotes</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
 
-    <!-- Navigation bar -->
-    <nav class="sticky top-0 bg-gray-100 z-50 shadow-sm mb-4">
-      <div class="max-w-screen-xl px-2 sm:px-6 h-16 flex items-center">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+  <title>Bananotes</title>
+</head>
 
-          <span>Bananotes</span>
+<body>
 
-      </div>
-    </nav>
-    <!-- !Navigation bar -->
-
-    <!-- Main body -->
+  <!-- Navigation bar -->
+  <nav class="sticky top-0 bg-gray-100 z-50 shadow-sm mb-4">
     <div class="max-w-screen-xl px-2 sm:px-6 h-16 flex items-center">
-    {% block main_screen %}
-
-    {% endblock %}
+      <span>Bananotes</span>
     </div>
-    <!-- !Main body -->
+  </nav>
+  <!-- !Navigation bar -->
 
-    <script src="index.js"></script>
-  </body>
+
+  <!-- Main container -->
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <div class="w-1/6 p-4">
+      <nav>
+        <ul>
+          <li><a href="#">Notes</a></li>
+          <li><a href="">Edit labels</a></li>
+          <li><a href="">Archive</a></li>
+          <li><a href="">Bin</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- !Sidebar -->
+
+
+    <!-- Main Content -->
+    <div class="flex-1 border-2 border-solid p-8">
+
+      <section class="flex justify-center mb-8">
+
+        <!-- Take a note button -->
+        <button id="note-btn" onclick="takeANote('note-btn', 'note-form');"
+          class="p-2 w-1/2 border-2 border-zinc-700 rounded-2xl bg-zinc-300">
+          Take a note...
+        </button>
+        <!-- !Take a note button -->
+
+        <!-- Take a note form-->
+        <div id="note-form" class="p-2 w-1/2 border-2 border-zinc-700 rounded-2xl bg-zinc-300" style="display: none;">
+          <form method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Take a note..." required>
+
+            <label for="content">Content:</label>
+            <textarea type="text" name="content" placeholder="Take a note..." required></textarea>
+
+            <button type="submit">Submit note</button>
+          </form>
+        </div>
+        <!-- !Take a note form-->
+
+      </section>
+
+
+      <section class="flex justify-center">
+        {% block main_screen %}{% endblock %}
+      </section>
+
+    </div>
+    <!-- !Main Content -->
+
+  </div>
+  <!-- !Main container-->
+
+  <script src="{% static 'scripts/index.js' %}"></script>
+
+</body>
+
 </html>
