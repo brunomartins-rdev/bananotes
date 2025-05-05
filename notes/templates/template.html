@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Bananotes</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <!-- Navigation bar -->
+    <nav class="sticky top-0 bg-gray-100 z-50 shadow-sm mb-4">
+      <div class="max-w-screen-xl px-2 sm:px-6 h-16 flex items-center">
+
+          <span>Bananotes</span>
+
+      </div>
+    </nav>
+    <!-- !Navigation bar -->
+
+    <!-- Main body -->
+    {% block main_screen %}
+
+    {% endblock %}
+    <!-- !Main body -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
