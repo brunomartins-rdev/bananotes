@@ -2,6 +2,14 @@
 
 {% block main_screen %}
 
-<p>Hello, World!</p>
+{% if notes_list %}
+{% for note in notes_list %}
+
+<p>This is note: {{ note.title }}</p>
+<br>
+<p>{{ note.content }}</p>
+
+{% endfor %}{% endif %}
+
 
 {% endblock %}

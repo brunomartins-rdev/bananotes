@@ -9,25 +9,30 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-  <title>Bananotes</title>
+  <title>bananotes</title>
 </head>
 
-<body>
+<body class="bg-gray-200 h-screen m-0">
+
 
   <!-- Navigation bar -->
-  <nav class="sticky top-0 bg-gray-100 z-50 shadow-sm mb-4">
-    <div class="max-w-screen-xl px-2 sm:px-6 h-16 flex items-center">
-      <span>Bananotes</span>
-    </div>
+  <nav class="px-6 h-24px flex items-center justify-between">
+      <span>bananotes</span>
+
+      <button 
+         onclick="takeANote();"
+         class="px-6 py-2 bg-yellow-200 rounded-2xl border border-yellow-300">
+        + New
+      </button>
   </nav>
   <!-- !Navigation bar -->
 
 
   <!-- Main container -->
-  <div class="flex min-h-screen">
+  <div class="flex min-height: (calc(100vh-24px))">
 
     <!-- Sidebar -->
-    <div class="w-1/6 p-4">
+    <div class="w-1/6 p-4 bg-white rounded-2xl">
       <nav>
         <ul>
           <li><a href="#">Notes</a></li>
@@ -41,38 +46,10 @@
 
 
     <!-- Main Content -->
-    <div class="flex-1 border-2 border-solid p-8">
-
-      <section class="flex justify-center mb-8">
-
-        <!-- Take a note button -->
-        <button id="note-btn" onclick="takeANote('note-btn', 'note-form');"
-          class="p-2 w-1/2 border-2 border-zinc-700 rounded-2xl bg-zinc-300">
-          Take a note...
-        </button>
-        <!-- !Take a note button -->
-
-        <!-- Take a note form-->
-        <div id="note-form" class="p-2 w-1/2 border-2 border-zinc-700 rounded-2xl bg-zinc-300" style="display: none;">
-          <form method="post">
-            {% csrf_token %}
-            <input type="text" name="title" placeholder="Take a note..." required>
-
-            <label for="content">Content:</label>
-            <textarea type="text" name="content" placeholder="Take a note..." required></textarea>
-
-            <button type="submit">Submit note</button>
-          </form>
-        </div>
-        <!-- !Take a note form-->
-
-      </section>
-
-
+    <div class="flex-1 border-2 p-4 bg-white rounded-2xl">
       <section class="flex justify-center">
         {% block main_screen %}{% endblock %}
       </section>
-
     </div>
     <!-- !Main Content -->
 
